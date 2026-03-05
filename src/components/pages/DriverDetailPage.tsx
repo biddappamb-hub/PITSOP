@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { BaseCrudService } from '@/integrations';
-import { Drivers } from '@/entities';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import { Image } from '@/components/ui/image';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { ArrowLeft, User, Flag, Hash, Building2 } from 'lucide-react';
+import { Drivers } from '@/entities';
+import { BaseCrudService } from '@/integrations';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Building2, Flag, Hash } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 export default function DriverDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -20,7 +20,7 @@ export default function DriverDetailPage() {
 
   const loadDriver = async () => {
     if (!id) return;
-    
+
     try {
       const data = await BaseCrudService.getById<Drivers>('drivers', id);
       setDriver(data);
@@ -86,7 +86,7 @@ export default function DriverDetailPage() {
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-charcoal via-transparent to-transparent" />
-                  
+
                   {/* Car Number Badge */}
                   {driver.carNumber && (
                     <div className="absolute top-8 right-8 bg-accent-red text-white font-heading text-5xl font-black w-24 h-24 rounded flex items-center justify-center shadow-lg">
