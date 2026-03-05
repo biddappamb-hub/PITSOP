@@ -37,7 +37,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link key={link.path} to={link.path}>
                 <motion.div
-                  className={`font-paragraph text-base font-medium cursor-pointer transition-colors duration-300 relative ${
+                  className={`font-heading text-base font-semibold cursor-pointer transition-colors duration-300 relative ${
                     isActive(link.path) ? 'text-accent-red' : 'text-light-grey hover:text-white'
                   }`}
                   whileHover={{ y: -2 }}
@@ -81,7 +81,7 @@ export default function Header() {
                 {navLinks.map((link) => (
                   <Link key={link.path} to={link.path} onClick={() => setIsMenuOpen(false)}>
                     <div
-                      className={`font-paragraph text-base font-medium py-2 px-4 rounded transition-colors duration-300 ${
+                      className={`font-heading text-base font-semibold py-2 px-4 rounded transition-colors duration-300 ${
                         isActive(link.path)
                           ? 'text-accent-red bg-accent-red bg-opacity-10'
                           : 'text-light-grey hover:text-white hover:bg-medium-grey'
