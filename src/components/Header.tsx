@@ -28,7 +28,7 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              F1<span className="text-accent-red">HUB</span>
+              PIT<span className="text-accent-red">STOP</span>
             </motion.div>
           </Link>
 
