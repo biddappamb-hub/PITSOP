@@ -16,16 +16,12 @@ export default function DriversPage() {
     loadDrivers();
   }, []);
 
-const loadDrivers = async () => {
-  try {
-    const response = await fetch("https://api.openf1.org/v1/drivers");
-    const data = await response.json();
-
-    setDrivers(data);
-  } catch (error) {
-    console.error(error);
-  }
-
+  const loadDrivers = async () => {
+    try {
+      const result = await BaseCrudService.getAll<Drivers>('drivers');
+      setDrivers(result.items);
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
