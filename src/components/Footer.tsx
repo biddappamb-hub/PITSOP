@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="font-heading text-2xl font-black text-white mb-4">
-              F1<span className="text-accent-red">HUB</span>
+              PIT<span className="text-accent-red">STOP</span>
             </div>
             <p className="font-paragraph text-sm text-light-grey leading-relaxed">
               Your ultimate destination for Formula 1 data, statistics, and insights. Experience the thrill of racing from the comfort of your screen.
@@ -85,7 +85,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-light-grey border-opacity-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-paragraph text-sm text-light-grey">
-              © {currentYear} F1Hub. All rights reserved.
+              © {currentYear} PITSTOP. All rights reserved.
             </p>
             <p className="font-paragraph text-sm text-light-grey">
               Built with passion for Formula 1 racing.
