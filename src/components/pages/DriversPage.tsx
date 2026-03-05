@@ -16,7 +16,12 @@ export default function DriversPage() {
     loadDrivers();
   }, []);
 
-  ;
+  const loadDrivers = async () => {
+    try {
+      const result = await BaseCrudService.getAll<Drivers>('drivers');
+      setDrivers(result.items);
+    } catch (error) {
+      console.error('Error loading drivers:', error);
     } finally {
       setIsLoading(false);
     }
