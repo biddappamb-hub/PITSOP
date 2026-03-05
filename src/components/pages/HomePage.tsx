@@ -249,10 +249,10 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="col-span-1 bg-medium-grey border border-white/5 p-8 group hover:border-accent-red/50 transition-all duration-300"
+            className="col-span-1 bg-medium-grey p-8 group hover:border-accent-red/50 transition-all duration-300 border border-solid border-[#ffffff0d]"
           >
             <Flag className="w-8 h-8 text-accent-red mb-4" />
-            <h3 className="font-heading text-2xl font-bold text-white mb-2">CONSTRUCTORS</h3>
+            <h3 className="font-heading text-2xl font-bold text-white mb-2 text-left">CONSTRUCTORS</h3>
             <p className="font-paragraph text-sm text-light-grey/60 mb-6">
               Engineering excellence and team heritage.
             </p>
