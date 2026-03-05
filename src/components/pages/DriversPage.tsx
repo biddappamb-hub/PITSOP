@@ -25,7 +25,7 @@ const loadDrivers = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+
     } finally {
       setIsLoading(false);
     }
