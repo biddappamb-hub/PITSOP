@@ -16,12 +16,7 @@ export default function DriversPage() {
     loadDrivers();
   }, []);
 
-  const loadDrivers = async () => {
-    try {
-      const result = await BaseCrudService.getAll<Drivers>('drivers');
-      setDrivers(result.items);
-    } catch (error) {
-      console.error('Error loading drivers:', error);
+  ;
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +67,7 @@ export default function DriversPage() {
                           />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-medium-grey via-transparent to-transparent" />
-                        
+
                         {/* Car Number Badge */}
                         {driver.carNumber && (
                           <div className="absolute top-4 right-4 bg-accent-red text-white font-heading text-3xl font-black w-16 h-16 rounded flex items-center justify-center">
@@ -86,7 +81,7 @@ export default function DriversPage() {
                         <h3 className="font-heading text-2xl font-bold text-white mb-2 group-hover:text-accent-red transition-colors duration-300">
                           {driver.driverName}
                         </h3>
-                        
+
                         <div className="space-y-2 mb-4">
                           {driver.teamName && (
                             <p className="font-paragraph text-sm text-light-grey">
