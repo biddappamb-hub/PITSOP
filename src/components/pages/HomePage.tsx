@@ -55,7 +55,6 @@ export default function HomePage() {
   return (
     <div ref={containerRef} className="min-h-screen bg-dark-charcoal text-foreground overflow-clip selection:bg-accent-red selection:text-white">
       <Header />
-
       {/* --- HERO SECTION --- */}
       <section className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
@@ -113,7 +112,7 @@ export default function HomePage() {
               <div className="flex gap-4">
                 <Link to="/drivers">
                   <button className="group relative px-8 py-4 bg-accent-red text-white font-paragraph font-bold uppercase tracking-wider overflow-hidden">
-                    <span className="relative z-10 flex items-center gap-2">
+                    <span className="relative z-10 flex items-center gap-2 font-heading">
                       Enter Paddock <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                     <div className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0 mix-blend-difference" />
@@ -135,7 +134,6 @@ export default function HomePage() {
           <div className="w-px h-12 bg-gradient-to-b from-accent-red to-transparent" />
         </motion.div>
       </section>
-
       {/* --- INFINITE MARQUEE --- */}
       <section className="w-full bg-accent-red py-4 overflow-hidden relative z-30 transform -skew-y-1 origin-left border-y-4 border-black">
         <div className="flex whitespace-nowrap animate-marquee">
@@ -149,7 +147,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -159,7 +156,6 @@ export default function HomePage() {
           animation: marquee 30s linear infinite;
         }
       `}</style>
-
       {/* --- COMMAND CENTER (BENTO GRID) --- */}
       <section className="relative w-full max-w-[120rem] mx-auto px-6 md:px-12 py-32 bg-dark-charcoal z-20">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-white/10 pb-8">
@@ -285,7 +281,6 @@ export default function HomePage() {
 
         </div>
       </section>
-
       {/* --- IMMERSIVE STATS SECTION --- */}
       <section className="relative w-full py-32 bg-black overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -326,7 +321,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* --- FEATURED HIGHLIGHT (Sticky Scroll) --- */}
       <section className="relative w-full bg-dark-charcoal py-32">
         <div className="max-w-[120rem] mx-auto px-6 md:px-12">
@@ -395,7 +389,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* --- CTA SECTION --- */}
       <section className="relative w-full py-32 bg-accent-red overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20" />
@@ -430,7 +423,6 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
