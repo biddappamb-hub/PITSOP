@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { BaseCrudService } from '@/integrations';
-import { Drivers } from '@/entities';
-import { Image } from '@/components/ui/image';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { Image } from '@/components/ui/image';
+import { Drivers } from '@/entities';
+import { BaseCrudService } from '@/integrations';
+import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function DriversPage() {
   const [drivers, setDrivers] = useState<Drivers[]>([]);
@@ -18,14 +18,10 @@ export default function DriversPage() {
 
 const loadDrivers = async () => {
   try {
-    const response = await fetch("https://api.openf1.org/v1/drivers");
-    const data = await response.json();
-
-    setDrivers(data);
+    const result = await BaseCrudService.getAll<Drivers>('drivers')
+    setDrivers(result)
   } catch (error) {
-    console.error(error);
-  }
-
+    console.error(error)
     } finally {
       setIsLoading(false);
     }
