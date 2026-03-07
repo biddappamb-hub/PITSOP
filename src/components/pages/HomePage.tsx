@@ -89,6 +89,11 @@ export default function HomePage() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-7xl"
           >
+            <h1 className="font-heading text-7xl md:text-9xl lg:text-[10rem] leading-[0.85] font-black text-white tracking-tighter mb-8 mix-blend-overlay">
+              THE CIRCUIT'S <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-red to-white">EDGE</span>
+            </h1>
+
             <div className="flex items-center gap-4 mb-6">
               <span className="px-3 py-1 border border-accent-red/50 text-accent-red font-paragraph text-xs tracking-widest uppercase bg-accent-red/5 backdrop-blur-sm">
                 Season 2024
@@ -99,16 +104,8 @@ export default function HomePage() {
               </span>
             </div>
 
-            <h1 className="font-heading text-7xl md:text-9xl lg:text-[10rem] leading-[0.85] font-black text-white tracking-tighter mb-8 mix-blend-overlay">
-              THE CIRCUIT'S <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-red to-white">EDGE</span>
-            </h1>
-
             <div className="flex flex-col md:flex-row items-start md:items-end gap-8 md:gap-16 max-w-4xl">
-              <p className="font-paragraph text-light-grey/80 text-lg md:text-xl leading-relaxed max-w-xl border-l-2 border-accent-red pl-6">
-                Precision engineering meets raw adrenaline. The ultimate digital command center for the modern Formula 1 enthusiast.
-              </p>
-              
+
               <div className="flex gap-4">
                 <Link to="/drivers">
                   <button className="group relative px-8 py-4 bg-accent-red text-white font-paragraph font-bold uppercase tracking-wider overflow-hidden">
