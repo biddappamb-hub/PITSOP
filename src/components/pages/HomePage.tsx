@@ -1,18 +1,18 @@
 // HPI 1.7-V
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { BaseCrudService } from '@/integrations';
+import { DriverStandings, RaceCalendar } from '@/entities';
 import { 
   ChevronRight, 
   Trophy, 
   Calendar, 
   Users, 
   Flag, 
-  Activity, 
-  Timer, 
   Zap, 
   ArrowUpRight,
   Gauge
@@ -51,6 +51,34 @@ export default function HomePage() {
 
   const heroY = useTransform(scrollYProgress, [0, 0.2], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  const [standings, setStandings] = useState<DriverStandings[]>([]);
+  const [nextRace, setNextRace] = useState<RaceCalendar | null>(null);
+  const [raceCount, setRaceCount] = useState(0);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      const standingsResult = await BaseCrudService.getAll<DriverStandings>('driverstandings', [], { limit: 3 });
+      setStandings(standingsResult.items);
+
+      const calendarResult = await BaseCrudService.getAll<RaceCalendar>('racecalendar', [], { limit: 100 });
+      const today = new Date();
+      const upcomingRaces = calendarResult.items.filter(race => {
+        const raceDate = new Date(race.raceDate || '');
+        return raceDate >= today;
+      });
+      if (upcomingRaces.length > 0) {
+        setNextRace(upcomingRaces[0]);
+      }
+      setRaceCount(calendarResult.items.length);
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
+  };
 
   return (
     <div ref={containerRef} className="min-h-screen bg-dark-charcoal text-foreground overflow-clip selection:bg-accent-red selection:text-white">
@@ -96,7 +124,7 @@ export default function HomePage() {
 
             <div className="flex items-center gap-4 mb-6">
               <span className="px-3 py-1 border border-accent-red/50 text-accent-red font-paragraph text-xs tracking-widest uppercase bg-accent-red/5 backdrop-blur-sm">
-                Season 2024
+                Season 2026
               </span>
               <span className="h-px w-12 bg-white/20" />
               <span className="text-light-grey/60 font-paragraph text-xs tracking-widest uppercase">
@@ -221,18 +249,18 @@ export default function HomePage() {
               <div className="w-12 h-1 bg-accent-red mb-6" />
               <h3 className="font-heading text-3xl font-bold text-white mb-4">STANDINGS</h3>
               <ul className="space-y-4 font-paragraph text-sm text-light-grey/60">
-                <li className="flex justify-between border-b border-white/5 pb-2">
-                  <span>01. VERSTAPPEN</span>
-                  <span className="text-white">PTS</span>
-                </li>
-                <li className="flex justify-between border-b border-white/5 pb-2">
-                  <span>02. PEREZ</span>
-                  <span className="text-white">PTS</span>
-                </li>
-                <li className="flex justify-between border-b border-white/5 pb-2">
-                  <span>03. HAMILTON</span>
-                  <span className="text-white">PTS</span>
-                </li>
+                {standings.length > 0 ? (
+                  standings.map((driver) => (
+                    <li key={driver._id} className="flex justify-between border-b border-white/5 pb-2">
+                      <span>{String(driver.rank).padStart(2, '0')}. {driver.driverName}</span>
+                      <span className="text-white">{driver.points}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="flex justify-between border-b border-white/5 pb-2">
+                    <span>Loading standings...</span>
+                  </li>
+                )}
               </ul>
             </div>
             <Link to="/standings" className="mt-8 inline-flex items-center gap-2 text-accent-red font-bold uppercase text-sm tracking-wider hover:gap-4 transition-all">
@@ -294,7 +322,7 @@ export default function HomePage() {
             {[
               { label: "Drivers", value: "20", icon: Users, suffix: "+" },
               { label: "Constructors", value: "10", icon: Flag, suffix: "" },
-              { label: "Grand Prix", value: "23", icon: Flag, suffix: "" },
+              { label: "Grand Prix", value: raceCount.toString(), icon: Flag, suffix: "" },
               { label: "Top Speed", value: "370", icon: Gauge, suffix: "KM/H" },
             ].map((stat, idx) => (
               <motion.div 
